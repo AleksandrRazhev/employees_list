@@ -1,5 +1,6 @@
-import './EmployeesListItem.css';
 import { Component } from 'react';
+
+import './EmployeesListItem.css';
 
 class EmployeesListItem extends Component {
   constructor(props) {
@@ -20,16 +21,10 @@ class EmployeesListItem extends Component {
     this.setState(({ rise }) => ({
       rise: !rise
     }));
-    // const { like } = this.state;
-    // if (this.state.like) {
-    //   this.setState(() => ({ like: false }));
-    // } else {
-    //   this.setState(() => ({ like: true }));
-    // }
   }
 
   render() {
-    const { name, salary } = this.props;
+    const { name, salary, onDelelte } = this.props;
     const { increase, rise } = this.state;
 
     let classNames = 'list-group-item d-flex justify-content-between';
@@ -50,7 +45,9 @@ class EmployeesListItem extends Component {
           </button>
 
           <button type="button"
-            className="btn-trash btn-sm">
+            className="btn-trash btn-sm"
+            onClick={onDelelte}
+          >
             <i className="fas fa-trash"></i>
           </button>
           <i className="fas fa-star"></i>
