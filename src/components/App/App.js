@@ -30,6 +30,8 @@ class App extends Component {
   }
 
   addItem = (name, salary) => {
+
+    if (!name || !salary) return;
     const { data, nextID } = this.state;
 
     const newItem = {
