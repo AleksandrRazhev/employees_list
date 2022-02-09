@@ -14,10 +14,12 @@ class App extends Component {
     this.state = {
       data: [
         { name: 'John C.', salary: '300', increase: false, rise: true, id: 1 },
-        { name: 'Alex M.', salary: '500', increase: false, rise: false, id: 2 },
-        { name: 'Carl W.', salary: '1000', increase: true, rise: false, id: 3 },
+        { name: 'Alex M.', salary: '1000', increase: false, rise: false, id: 2 },
+        { name: 'Carl W.', salary: '1001', increase: true, rise: false, id: 3 },
       ],
-      nextID: 4
+      nextID: 4,
+      term: '',
+      filterID: 1,
     }
   }
 
@@ -63,9 +65,36 @@ class App extends Component {
     }))
   }
 
+  searchEmp = (items, term) => {
+    if (term.length === 0) return items;
+
+    return items.filter(item => {
+      return (item.name.indexOf(term) > -1);
+    });
+  }
+
+  onUpdateSearch = (term) => {
+    this.setState({ term })
+  }
+
+  filterData = (data, filterID) => {
+    switch (filterID) {
+      case 2: return data.filter(item => item.rise);
+      case 3: return data.filter(item => item.salary > 1000);
+      default: return data;
+    }
+  }
+
+  onUpdateFilter = (filterID) => {
+    this.setState({filterID});
+  }
+
   render() {
+    const { data, term, filterID } = this.state;
     const employees = this.state.data.length;
     const increased = this.state.data.filter(item => item.increase).length;
+    const filterData = this.filterData(data, filterID);
+    const visibleData = this.searchEmp(filterData, term);
 
     return (
       <div className="app">
@@ -74,11 +103,13 @@ class App extends Component {
           increased={increased}
         />
         <div className="search-panel">
-          <SearchPanel />
-          <AppFilter />
+          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
+          <AppFilter
+            onUpdateFilter={this.onUpdateFilter}
+          />
         </div>
         <EmployeesList
-          data={this.state.data}
+          data={visibleData}
           onDelelte={this.deleteItem}
           onToggleProp={this.onToggleProp}
         />
