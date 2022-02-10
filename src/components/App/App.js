@@ -86,7 +86,26 @@ class App extends Component {
   }
 
   onUpdateFilter = (filterID) => {
-    this.setState({filterID});
+    this.setState({ filterID });
+  }
+
+  onSalary = (value, id) => {
+    this.setState(({ data }) => ({
+      data: data.map(item => {
+        if (item.id === id) item.salary = value;
+        return item;
+      })
+    }))
+    this.renderSalary(id)
+  }
+
+  renderSalary = (id) => {
+    const constData = this.state.data;
+    const tempData = this.state.data.filter(item => item.id !== id)
+
+    new Promise((res, rej) => res())
+      .then(() => this.setState(state => state.data = tempData))
+      .then(() => this.setState(state => state.data = constData))
   }
 
   render() {
@@ -112,6 +131,7 @@ class App extends Component {
           data={visibleData}
           onDelelte={this.deleteItem}
           onToggleProp={this.onToggleProp}
+          onSalary={this.onSalary}
         />
         <EmployeesAddForm
           onAdd={this.addItem}
