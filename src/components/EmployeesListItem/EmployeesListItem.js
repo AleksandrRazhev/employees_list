@@ -12,6 +12,13 @@ const EmployeesListItem = (props) => {
     e.target.value = `${salary}$`;
   };
 
+  const onKeyDown = (e) => {
+    if (e.code === 'Space' || e.code === 'Enter') {
+      console.log(e.code);
+      onToggleProp(e);
+    };
+  };
+
   const { name, salary, increase, rise, onDelelte, onToggleProp } = props;
 
   let classNames = 'list-group-item d-flex justify-content-between';
@@ -23,6 +30,7 @@ const EmployeesListItem = (props) => {
       <span
         className="list-group-item-label"
         tabIndex="0"
+        onKeyDown={onKeyDown}
         onClick={onToggleProp}
         data-toggle='rise'
       >{name}</span>
