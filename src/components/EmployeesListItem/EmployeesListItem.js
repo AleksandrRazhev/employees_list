@@ -6,10 +6,11 @@ const EmployeesListItem = (props) => {
     let salary = e.target.value;
     if (!+salary) {
       salary = props.salary
-      console.log('The entered value is not a number! Please enter a number')
+      console.log('The entered value is not a number! Please enter a number');
     };
     props.onSalary(salary, props.id);
-  }
+    e.target.value = `${salary}$`;
+  };
 
   const { name, salary, increase, rise, onDelelte, onToggleProp } = props;
 
@@ -21,6 +22,7 @@ const EmployeesListItem = (props) => {
     <li className={classNames}>
       <span
         className="list-group-item-label"
+        tabIndex="0"
         onClick={onToggleProp}
         data-toggle='rise'
       >{name}</span>

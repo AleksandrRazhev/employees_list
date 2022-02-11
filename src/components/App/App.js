@@ -96,16 +96,6 @@ class App extends Component {
         return item;
       })
     }))
-    this.renderSalary(id)
-  }
-
-  renderSalary = (id) => {
-    const constData = this.state.data;
-    const tempData = this.state.data.filter(item => item.id !== id)
-
-    new Promise((res, rej) => res())
-      .then(() => this.setState(state => state.data = tempData))
-      .then(() => this.setState(state => state.data = constData))
   }
 
   render() {
