@@ -1,6 +1,6 @@
 import { Component } from 'react/cjs/react.production.min';
 
-import './EmployeesAddForm.css';
+import './EmployeesAddForm.scss';
 
 class EmployeesAddForm extends Component {
   constructor(props) {

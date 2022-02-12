@@ -1,4 +1,4 @@
-import './EmployeesListItem.css';
+import './EmployeesListItem.scss';
 
 const EmployeesListItem = (props) => {
 
@@ -20,6 +20,9 @@ const EmployeesListItem = (props) => {
   };
 
   const { name, salary, increase, rise, onDelelte, onToggleProp } = props;
+  const style = {
+    fontSize: '2em',
+  };
 
   let classNames = 'list-group-item d-flex justify-content-between';
   if (increase) classNames += ' increase';
@@ -29,6 +32,7 @@ const EmployeesListItem = (props) => {
     <li className={classNames}>
       <span
         className="list-group-item-label"
+        style={style}
         tabIndex="0"
         onKeyDown={onKeyDown}
         onClick={onToggleProp}

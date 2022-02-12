@@ -6,7 +6,7 @@ import AppFilter from '../AppFilter/AppFilter';
 import EmployeesList from '../EmployeesList/EmployeesList';
 import EmployeesAddForm from '../EmployeesAddForm/EmployeesAddForm';
 
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   constructor(props) {
