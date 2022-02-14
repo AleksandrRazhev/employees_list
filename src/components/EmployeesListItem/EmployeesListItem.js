@@ -21,7 +21,7 @@ const EmployeesListItem = (props) => {
 
   const { name, salary, increase, rise, onDelelte, onToggleProp } = props;
   const style = {
-    fontSize: '2em',
+    fontSize: '1.25em',
   };
 
   let classNames = 'list-group-item d-flex justify-content-between';

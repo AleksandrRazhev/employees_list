@@ -1,1 +1,1 @@
-# React training project
+# React training project with class components
